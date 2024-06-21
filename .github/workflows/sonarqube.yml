@@ -1,0 +1,31 @@
+name: SonarQube Analysis
+
+on:
+  push:
+    branches:
+      - main  # Adjust to the branch you want to analyze
+  pull_request:
+    branches:
+      - main  # Adjust to the branch you want to analyze
+
+jobs:
+  sonarqube-analysis:
+    runs-on: ubuntu-latest  # Choose an appropriate runner based on your needs
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up JDK
+        uses: actions/setup-java@v2
+        with:
+          distribution: 'adopt'
+
+      - name: Build and analyze with SonarQube
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}  # Use the name of the secret you added in step 4
+          SONAR_HOST_URL: 'http://localhost:9000'  # Replace with your SonarQube server URL
+        run: |
+           sonar-scanner  # Replace with your build command (e.g., Maven, Gradle)
+       
+
