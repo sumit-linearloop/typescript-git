@@ -20,14 +20,12 @@ jobs:
         uses: actions/setup-java@v2
         with:
           distribution: 'adopt'
-          java-version: '17'  # Specify the Java version you want to use
-          architecture: 'x64
+          java-version: '11'  # Specify the Java version you want to use
+          architecture: 'x64'
 
       - name: Build and analyze with SonarQube
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}  # Use the name of the secret you added in step 4
           SONAR_HOST_URL: 'http://localhost:9000'  # Replace with your SonarQube server URL
         run: |
-           sonar-scanner  # Replace with your build command (e.g., Maven, Gradle)
-       
-
+          ./sonar-scanner  # Replace with your build command (e.g., Maven, Gradle)
