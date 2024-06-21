@@ -20,6 +20,8 @@ jobs:
         uses: actions/setup-java@v2
         with:
           distribution: 'adopt'
+          java-version: '17'  # Specify the Java version you want to use
+          architecture: 'x64
 
       - name: Build and analyze with SonarQube
         env:
