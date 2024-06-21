@@ -20,12 +20,19 @@ jobs:
         uses: actions/setup-java@v2
         with:
           distribution: 'adopt'
-          java-version: '17'  # Specify the Java version you want to use
+          java-version: '17'  # Adjust Java version as needed
           architecture: 'x64'
 
-      - name: Build and analyze with SonarQube
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}  # Use the name of the secret you added in step 4
-          SONAR_HOST_URL: 'http://localhost:9000'  # Replace with your SonarQube server URL
+      - name: Load environment variables from .env file
         run: |
-          "/c/sonarqube/sonar-scanner-6.0.0.4432-windows/bin/sonar-scanner.bat" -D"sonar.projectKey=sonar" -D"sonar.sources=." -D"sonar.host.url=http://localhost:9000" -D"sonar.login=${SONAR_TOKEN}"
+          set -a
+          [ -f .env ] && . .env
+          set +a
+
+      - name: Run SonarQube Scanner
+        env:
+          JAVA_HOME: /opt/hostedtoolcache/Java_Adopt_jdk/17.0.11-9/x64
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: http://localhost:9000
+        run: |
+          eval "${SONAR_COMMAND}"
