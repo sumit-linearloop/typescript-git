@@ -26,7 +26,7 @@ jobs:
       - name: Load environment variables from .env file
         run: |
           set -a
-          [ -f .env ] && . .env
+          [ -f env_file.env ] && . env_file.env
           set +a
 
       - name: Run SonarQube Scanner
@@ -34,4 +34,4 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: ${{ env.SONAR_HOST_URL }}
         run: |
-          "${SONAR_COMMAND}"
+          ${SONAR_COMMAND}
