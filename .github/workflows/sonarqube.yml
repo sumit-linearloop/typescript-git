@@ -28,4 +28,4 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}  # Use the name of the secret you added in step 4
           SONAR_HOST_URL: 'http://localhost:9000'  # Replace with your SonarQube server URL
         run: |
-          C:\sonarqube\sonar-scanner-6.0.0.4432-windows\bin
+          "/c/sonarqube/sonar-scanner-6.0.0.4432-windows/bin/sonar-scanner.bat" -D"sonar.projectKey=sonar" -D"sonar.sources=." -D"sonar.host.url=http://localhost:9000" -D"sonar.login=${SONAR_TOKEN}"
