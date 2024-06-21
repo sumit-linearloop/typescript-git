@@ -4,7 +4,7 @@ const router = Router();
 
 interface Item {
   id: number;
-  name: string;P{
+  name: string;
 }
 
 let items: Item[] = [];
