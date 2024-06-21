@@ -31,7 +31,6 @@ jobs:
 
       - name: Run SonarQube Scanner
         env:
-          JAVA_HOME: /opt/hostedtoolcache/Java_Adopt_jdk/17.0.11-9/x64
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: http://localhost:9000
         run: |
